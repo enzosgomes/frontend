@@ -1,0 +1,13 @@
+<div>
+    
+    <label for="createuser">Crie sua conta</label>
+    <form name="createuser">
+        <input placeholder="Nome" [(ngModel)]="user.username" name="nome">
+        <input placeholder="Email" [(ngModel)]="user.email" name="email">
+        <input type="password" placeholder="Senha" [(ngModel)]="user.password" name="senha">
+        <input type="password" placeholder="Confirmar Senha"  [(ngModel)]="validPassword" name="confirmar-senha">
+    </form>
+
+    <button (click)="cancel()" name="cancelar">Cancelar</button>
+    <button (click)="createUser()" name="confirmar">Confirmar</button>
+</div>

@@ -1,0 +1,8 @@
+<div>
+    <input type="text" placeholder="Email ou Login" [(ngModel)]="login.username" name="username">
+    <input type="password" placeholder="Senha" [(ngModel)]="login.password" name="password">
+    <input type="checkbox" id="save"><label for="save">Lembrar minha senha</label>
+    
+    <button (click)="toCreateUser()">Criar conta</button>
+    <button (click)="authenticate()">Acessar</button>
+</div>

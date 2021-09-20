@@ -1,0 +1,6 @@
+select:not(:valid) {
+    color: #A8A8A8;
+}
+option {
+    color: black;
+  }

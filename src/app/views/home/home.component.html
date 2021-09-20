@@ -1,0 +1,8 @@
+<div>
+    <div *ngIf="isAuthenticateHome">Nome user</div>
+    <button name="desconect" (click)="logout()">Desconectar</button> 
+</div>
+
+<div *ngIf="isAuthenticateHome">
+    <app-consulta></app-consulta>
+</div>

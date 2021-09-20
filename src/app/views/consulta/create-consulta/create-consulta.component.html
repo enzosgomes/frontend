@@ -1,0 +1,42 @@
+<div>
+    <label>Nova Consulta</label>
+
+    <form [formGroup]="formGroupCreateConsulta" (ngSubmit)="submit()">
+
+        <select formControlName="especialidade" (click)="getEspecialidades()">
+            <option [ngValue]="null" disabled>Especialidade</option>
+
+            <option *ngFor="let especialidade of especialidades" [ngValue]="especialidade.id">
+                {{especialidade.nome}}
+            </option>
+
+        </select>
+
+        <select formControlName="medico" (click)="getMedicos()">
+
+            <option [ngValue]="null" disabled>Médicos</option>
+
+            <option *ngFor="let medico of medicos" [ngValue]="medico">
+                {{medico.nome}}
+            </option>
+        </select>
+
+        <select formControlName="agenda" (click)="getAgendas()">
+            <option [ngValue]="null" disabled>Data</option>
+
+            <option *ngFor="let agenda of agendas" [ngValue]="agenda.id">
+                {{agenda.dia}}
+            </option>
+        </select>
+
+        <select formControlName="hora" (click)="getHora()">
+            <option [ngValue]="null" disabled>Hora</option>
+
+            <option *ngFor="let hora of horarios" [ngValue]="hora.horarios">
+                {{hora.horarios}}
+            </option>
+        </select>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
