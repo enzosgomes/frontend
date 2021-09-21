@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 
   authenticate(): void 
   {
-    this.loginService.login(this.login).subscribe((data: Token)=> {     
+    this.loginService.login(this.login).subscribe((data: Token) => {     
       if(data)
       {
         localStorage.setItem('tokenUser', data.token);

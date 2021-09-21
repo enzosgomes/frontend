@@ -13,6 +13,7 @@ export class CreateConsultaService {
   private readonly urlEspecialidades = environment["urlEspecialidade"];
   private readonly urlMedicos = environment["urlMedicos"];
   private readonly urlAgendas = environment["urlAgendas"];
+  private readonly urlConsulta = environment["urlConsulta"];
 
   constructor(private http: HttpClient) { }
 
@@ -30,5 +31,14 @@ export class CreateConsultaService {
   {
     return this.http.get<ResponseEspecialidades>(this.urlAgendas + '?medico=' + medico + '&especialidade=' + especialidade);
   }
-  
+
+  getAgenda(medico: Number, especialidade: Number, data: String): Observable<any>
+  {
+    return this.http.get<ResponseEspecialidades>(this.urlAgendas + '?medico=' + medico + '&especialidade=' + especialidade + '&data_inicio=' + data + '&data_final=' + data);
+  }
+
+  postCreateConsulta(consulta: any): Observable<any>{
+    return this.http.post(this.urlConsulta, consulta);
+  }
+
 }

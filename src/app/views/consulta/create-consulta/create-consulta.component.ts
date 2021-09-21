@@ -20,13 +20,28 @@ export class CreateConsultaComponent implements OnInit {
 
   horarios: any[];
 
+  agendaConsulta: any;
+
+  //para o post crear consulta
+  
   idEspecialidade: Number;
 
   idMedico: Number;
 
-  dia: String;
+  idAgenda: any;
 
+  diaConsulta: String;
 
+  horaConsulta: String;
+
+  respostaConsulta: any[];
+
+  requiredPostCreateConsulta: any = {
+    agenda_id: 0,
+    horario: ''
+  }
+
+  
   constructor(private createConsultaService: CreateConsultaService, private fb: FormBuilder) { }
 
   ngOnInit(): void 
@@ -78,27 +93,39 @@ export class CreateConsultaComponent implements OnInit {
     this.createConsultaService.getAgendas(this.idMedico, this.idEspecialidade).subscribe(data => {
       this.agendas = data.results;
     })
-    this.dia =  this.formGroupCreateConsulta.value.data;
+   this.diaConsulta = this.formGroupCreateConsulta.value.agenda;
   }
+
 
   getHora()
   {
-
+    this.createConsultaService.getAgenda(this.idMedico, this.idEspecialidade, this.diaConsulta).subscribe(data => {
+      this.respostaConsulta = data.results[0];
+      this.agendaConsulta = JSON.stringify(this.respostaConsulta);
+      this.agendaConsulta = JSON.parse(this.agendaConsulta);
+      this.horarios = this.agendaConsulta.horarios;
+      this.requiredPostCreateConsulta.agenda_id = this.agendaConsulta.id
+    })
+   this.requiredPostCreateConsulta.horario = this.formGroupCreateConsulta.value.hora;
   }
+
+  marcarConsulta() {
+    this.createConsultaService.postCreateConsulta(this.requiredPostCreateConsulta).subscribe(resposta => {
+      console.log(resposta);
+    }, error => {
+      console.log(error.error.non_field_errors)
+    })
+  }
+
 
   onCountryChanged(value: any) {
     console.log('[onCountryChanged]')
     console.log(value)
   }
 
-  submit() {/*
-    console.log('ESPECIALIDADE: ', this.formGroupCreateConsulta.value.especialidade);
-    console.log('MEDICO: ', this.formGroupCreateConsulta.value.medico);
-    console.log('AGENDA: ', this.formGroupCreateConsulta.value.agenda);*/
-    //   GET /agendas/?medico=1&especialidade=2&data_inicio=2020-01-01&data_final=2020-01-05
-    console.log('DIA: ', this.formGroupCreateConsulta.value.agenda);
+  submit() {
+    this.marcarConsulta();
   }
-
 
 }
 

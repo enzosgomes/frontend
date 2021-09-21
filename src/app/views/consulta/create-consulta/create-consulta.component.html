@@ -16,7 +16,7 @@
 
             <option [ngValue]="null" disabled>Médicos</option>
 
-            <option *ngFor="let medico of medicos" [ngValue]="medico">
+            <option *ngFor="let medico of medicos" [ngValue]="medico.id">
                 {{medico.nome}}
             </option>
         </select>
@@ -24,16 +24,17 @@
         <select formControlName="agenda" (click)="getAgendas()">
             <option [ngValue]="null" disabled>Data</option>
 
-            <option *ngFor="let agenda of agendas" [ngValue]="agenda.id">
-                {{agenda.dia}}
-            </option>
+            <option *ngFor="let agenda of agendas" [ngValue]="agenda.dia">
+              {{agenda.dia}}
+          </option>
+
         </select>
 
         <select formControlName="hora" (click)="getHora()">
             <option [ngValue]="null" disabled>Hora</option>
 
-            <option *ngFor="let hora of horarios" [ngValue]="hora.horarios">
-                {{hora.horarios}}
+            <option *ngFor="let hora of horarios" [ngValue]="hora">
+                {{hora}}
             </option>
         </select>
 

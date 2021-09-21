@@ -27,7 +27,7 @@ import { CreateConsultaComponent } from './views/consulta/create-consulta/create
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [LoginComponent,
     { 

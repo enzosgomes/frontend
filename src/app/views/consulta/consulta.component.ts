@@ -8,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConsultaComponent implements OnInit {
 
+  testeok: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ToCreateConsulta(){
+    this.testeok = true;
   }
 
 }

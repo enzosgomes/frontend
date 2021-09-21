@@ -1,3 +1,6 @@
 <div>
-    <app-create-consulta></app-create-consulta>
+    <button (click)="ToCreateConsulta()">crear consulta</button>
+    <div *ngIf="testeok">
+        <app-create-consulta></app-create-consulta>
+    </div>
 </div>
