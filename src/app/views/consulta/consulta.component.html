@@ -1,6 +1,50 @@
-<div>
-    <button (click)="ToCreateConsulta()">crear consulta</button>
-    <div *ngIf="testeok">
-        <app-create-consulta></app-create-consulta>
+<mat-card>
+
+    <div class="topo-mat-card">
+
+        <label for="consultas">
+
+            Consulta Clínica
+
+        </label>
+
+
     </div>
-</div>
+
+    <mat-card-content>
+
+
+        <table id="consultas">
+
+            <div class="conteiner-th-table">
+                <tr>
+                    <th>ESPECIALIDADE</th>
+                    <th>PROFISSIONAL</th>
+                    <th>DATA</th>
+                    <th>HORA</th>
+                </tr>
+            </div>
+
+            <div class="conteiner-consultas" *ngFor="let consulta of consultas">
+                <tr>
+
+                    <td>{{consulta.medico.especialidade.nome}}</td>
+
+                    <td>{{consulta.medico.nome}}</td>
+
+                    <td>{{consulta.dia}}</td>
+
+                    <td>{{consulta.horario}}</td>
+
+                    <td>
+                        <img src="#" alt="icone">
+                        <button>Remover</button>
+                    </td>
+                </tr>
+            </div>
+                       
+        </table>
+
+    </mat-card-content>
+
+</mat-card>

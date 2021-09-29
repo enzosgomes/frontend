@@ -1,13 +1,61 @@
-<div>
-    
-    <label for="createuser">Crie sua conta</label>
-    <form name="createuser">
-        <input placeholder="Nome" [(ngModel)]="user.username" name="nome">
-        <input placeholder="Email" [(ngModel)]="user.email" name="email">
-        <input type="password" placeholder="Senha" [(ngModel)]="user.password" name="senha">
-        <input type="password" placeholder="Confirmar Senha"  [(ngModel)]="validPassword" name="confirmar-senha">
-    </form>
+<mat-card>
 
-    <button (click)="cancel()" name="cancelar">Cancelar</button>
-    <button (click)="createUser()" name="confirmar">Confirmar</button>
-</div>
+  <img mat-card-image class="logo-img" src="/assets/Logo.png" alt="logo-medicar">
+
+  <mat-card-title>Crie sua conta</mat-card-title>
+  
+  <mat-card-content>
+  
+  <form>
+  
+    <mat-form-field appearance="outline" color="primary">
+        
+      <mat-label>Nome</mat-label>
+      <input type="text" matInput [(ngModel)]="user.username" name="name">
+      
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" color="primary">
+        
+        <mat-label>Email</mat-label>
+        <input type="email" matInput [(ngModel)]="user.email" name="email">
+        
+      </mat-form-field>
+    
+  
+  
+      <mat-form-field class="form-password" appearance="outline" color="primary">
+  
+        <mat-label>Senha</mat-label>
+        <input [type]="hide ? 'password' : 'text'" matInput [(ngModel)]="user.password" name="password" autocomplete="off">
+  
+        <button type="button" class="button-icon" mat-icon-button matSuffix (click)="hide = !hide">
+          <img  src="/assets/fa-solid_eye.png" alt="icone-ocultar-senha">
+        </button>
+  
+      </mat-form-field>
+
+      <mat-form-field class="form-password" appearance="outline" color="primary">
+  
+        <mat-label> Confirmar Senha</mat-label>
+        <input [type]="hideValid ? 'password' : 'text'" matInput [(ngModel)]="validPassword" name="valid-password" autocomplete="off">
+  
+        <button type="button" class="button-icon" mat-icon-button matSuffix (click)="hideValid = !hideValid">
+          <img  src="/assets/fa-solid_eye.png" alt="icone-ocultar-senha">
+        </button>
+  
+      </mat-form-field>
+      
+    </form>
+  
+    </mat-card-content>
+
+  <mat-card-actions class="buttons">
+  
+      <button class="button-create-account" type="button" (click)="cancel()"> Cancelar </button>
+  
+      <button class="button-submit"  type="submit" (click)="createUser()"> Criar Conta </button>
+  
+  </mat-card-actions>
+  
+  </mat-card>

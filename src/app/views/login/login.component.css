@@ -1,0 +1,96 @@
+:host {
+  display: flex;
+  justify-content: center;
+  margin: 100px 0px;
+}
+
+mat-card-content {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.mat-card:not([class*=mat-elevation-z]) {
+  box-shadow: none;
+}
+
+.logo-img {
+  display: flex;
+  justify-content: left;
+  width: 180.74px;
+  height: 50px;
+  padding-left: 25px;
+}
+
+.mat-form-field {
+  width: 100%;
+  max-width: 400px;
+  max-height: 70px;
+} 
+
+/* button input password */
+.button-icon {
+  border:none;
+  background-color: #ffff;
+  top: -5px;
+  height: 5px;
+}
+
+/* checkbox remember password */
+mat-card-actions, .remember-password {
+  display: flex;
+  justify-content: left;
+  padding: none;
+  margin-left: 5px;
+  margin-top: -35px;
+}
+
+::ng-deep .mat-checkbox-checkmark {
+  display: none;
+}
+
+::ng-deep .mat-checkbox-layout, .mat-checkbox-label{
+  color: #A8A8A8;
+}
+
+/* buttons */
+
+mat-card-actions, .buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.button-create-account, .button-submit{
+  cursor: pointer;
+  width: 180px;
+  height: 40px;
+  margin: 10px 10px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  border: none;
+  border-radius: 8px;
+}
+
+.button-create-account {
+  background-color: #ffff;
+  color: #49B4BB;
+}
+
+.button-create-account:hover {
+  background-color: #D9F1F3;
+}
+
+.button-submit {
+  background-color: #49B4BB;
+  color: #ffff;
+}
+
+.button-submit:hover {
+  background-color: #90D3D7;
+  color: #ffff;
+}
+

@@ -1,8 +1,9 @@
 import { LoginService } from './../../shared/service/login.service';
-import { User, Token } from './../../shared/model/create-user.model';
+import { Token } from './../../shared/model/create-user.model';
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,28 +12,33 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  login: User = {
-    username: '',
-    email: '',
-    password: ''
-   };
-
    isAuthenticate: boolean = false;
    tokenAuthorization: any;
+   hide:boolean = true;
+   checked: boolean = false;
+
+   formLogin: FormGroup = new FormGroup({
+    username: new FormControl(''),
+    password: new FormControl(''),
+  });
+   
+
+  
 
   constructor(private router: Router, private loginService: LoginService) { }
 
   ngOnInit(): void {
+
   }
 
-  toCreateUser(): void 
+  toCreateUser() 
   {
     this.router.navigate(['create-user']);
   }
 
-  authenticate(): void 
+  submit() 
   {
-    this.loginService.login(this.login).subscribe((data: Token) => {     
+    this.loginService.login(this.formLogin.value).subscribe((data: Token) => {     
       if(data)
       {
         localStorage.setItem('tokenUser', data.token);

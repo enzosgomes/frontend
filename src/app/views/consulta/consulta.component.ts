@@ -1,4 +1,10 @@
+import { ConsultaService } from './../../shared/service/consulta.service';
+
+import { CreateConsultaComponent } from './create-consulta/create-consulta.component';
+
+import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
+
 
 
 @Component({
@@ -8,15 +14,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConsultaComponent implements OnInit {
 
-  testeok: boolean = false;
-
-  constructor() { }
+  consultas: any[];
+  
+  constructor( private consultaService: ConsultaService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    
+    this.listConsultas();
+
   }
 
-  ToCreateConsulta(){
-    this.testeok = true;
+  addConsulta(): void {
+    const dialogRef = this.dialog.open(CreateConsultaComponent, {
+      width: '480px',
+      height: '420px',
+    });
+  }
+  
+  listConsultas() {
+    this.consultaService.getConsulta().subscribe( consultas => {
+      this.consultas = consultas;
+      console.log(this.consultas);
+    })
   }
 
 }

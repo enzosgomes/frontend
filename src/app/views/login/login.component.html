@@ -1,8 +1,46 @@
-<div>
-    <input type="text" placeholder="Email ou Login" [(ngModel)]="login.username" name="username">
-    <input type="password" placeholder="Senha" [(ngModel)]="login.password" name="password">
-    <input type="checkbox" id="save"><label for="save">Lembrar minha senha</label>
+<mat-card>
+
+  <img mat-card-image class="logo-img" src="/assets/Logo.png" alt="logo-medicar">
+
+<mat-card-content>
+
+<form [formGroup]="formLogin">
+
+  <mat-form-field class="form-login" appearance="outline" color="primary">
+
+    <mat-label>Email ou Login</mat-label>
+    <input formControlName="username" type="text" matInput name="username">
     
-    <button (click)="toCreateUser()">Criar conta</button>
-    <button (click)="authenticate()">Acessar</button>
-</div>
+  </mat-form-field>
+
+
+    <mat-form-field class="form-password" appearance="outline" color="primary">
+
+      <mat-label>Senha</mat-label>
+      <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" autocomplete="checked ? 'off' : 'on'" name="password">
+
+      <button type="button" class="button-icon" mat-icon-button matSuffix (click)="hide = !hide">
+        <img  src="/assets/fa-solid_eye.png" alt="icone-ocultar-senha">
+      </button>
+
+    </mat-form-field>
+    
+  </form>
+
+  </mat-card-content>
+
+  <mat-card-actions class="remember-password">
+
+    <mat-checkbox [(ngModel)]="checked" color="primary"> Lembra minha senha </mat-checkbox>
+
+  </mat-card-actions>
+
+<mat-card-actions class="buttons">
+
+    <button class="button-create-account" type="button" (click)="toCreateUser()"> Criar Conta </button>
+
+    <button class="button-submit"  type="submit" (click)="submit()"> Acessar </button>
+
+</mat-card-actions>
+
+</mat-card>

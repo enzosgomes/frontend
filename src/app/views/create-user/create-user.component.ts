@@ -16,6 +16,10 @@ export class CreateUserComponent implements OnInit {
     password: ''
   }
 
+  hide:boolean = true;
+  
+  hideValid:boolean = true;
+
   validPassword: String;
 
   userResponse: User;
