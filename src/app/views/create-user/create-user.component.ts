@@ -1,5 +1,7 @@
 import { User } from './../../shared/model/create-user.model';
 import { CreateUserService } from './../../shared/service/create-user.service';
+
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,12 +11,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-user.component.css']
 })
 export class CreateUserComponent implements OnInit {
-  
-  user: User = {
-    username: '',
-    email: '',
-    password: ''
-  }
+
+  formCreateUser: FormGroup = new FormGroup({
+    username: new FormControl( '', [Validators.required] ),
+    email: new FormControl( '', [Validators.required, Validators.email] ),
+    password: new FormControl( '', [Validators.required] ),
+    validPassword: new FormControl( '', [Validators.required] )
+  });
 
   hide:boolean = true;
   
@@ -31,9 +34,9 @@ export class CreateUserComponent implements OnInit {
 
   createUser(): void 
   {
-    if(this.validPassword == this.user.password)
+    if(this.formCreateUser.value.validPassword == this.formCreateUser.value.password)
     {
-      this.createUserServise.createUser(this.user).subscribe(userResponse => {
+      this.createUserServise.createUser(this.formCreateUser.value).subscribe(userResponse => {
         this.userResponse = userResponse;
         this.router.navigate(['']);
         }, error => {

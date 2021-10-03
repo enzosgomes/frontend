@@ -22,6 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -47,11 +48,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatButtonModule,
     MatCheckboxModule,
     MatDialogModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSnackBarModule
   ],
   providers: [LoginComponent,
     { 
-      provide: HTTP_INTERCEPTORS, useClass: AltoTokenInterceptor, multi: true 
+      provide: HTTP_INTERCEPTORS,
+      useClass: AltoTokenInterceptor,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]

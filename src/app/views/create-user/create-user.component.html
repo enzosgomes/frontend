@@ -6,28 +6,26 @@
   
   <mat-card-content>
   
-  <form>
+  <form [formGroup]="formCreateUser">
   
     <mat-form-field appearance="outline" color="primary">
         
       <mat-label>Nome</mat-label>
-      <input type="text" matInput [(ngModel)]="user.username" name="name">
+      <input type="text" formControlName="username" matInput name="create-username">
       
     </mat-form-field>
 
     <mat-form-field appearance="outline" color="primary">
         
         <mat-label>Email</mat-label>
-        <input type="email" matInput [(ngModel)]="user.email" name="email">
+        <input type="email" matInput formControlName="email" name="create-email">
         
       </mat-form-field>
     
-  
-  
-      <mat-form-field class="form-password" appearance="outline" color="primary">
+      <mat-form-field appearance="outline" color="primary">
   
         <mat-label>Senha</mat-label>
-        <input [type]="hide ? 'password' : 'text'" matInput [(ngModel)]="user.password" name="password" autocomplete="off">
+        <input [type]="hide ? 'password' : 'text'" matInput formControlName="password" name="create-password" autocomplete="off">
   
         <button type="button" class="button-icon" mat-icon-button matSuffix (click)="hide = !hide">
           <img  src="/assets/fa-solid_eye.png" alt="icone-ocultar-senha">
@@ -35,10 +33,10 @@
   
       </mat-form-field>
 
-      <mat-form-field class="form-password" appearance="outline" color="primary">
+      <mat-form-field appearance="outline" color="primary">
   
         <mat-label> Confirmar Senha</mat-label>
-        <input [type]="hideValid ? 'password' : 'text'" matInput [(ngModel)]="validPassword" name="valid-password" autocomplete="off">
+        <input [type]="hideValid ? 'password' : 'text'" matInput matInput formControlName="validPassword" name="valid-password" autocomplete="off">
   
         <button type="button" class="button-icon" mat-icon-button matSuffix (click)="hideValid = !hideValid">
           <img  src="/assets/fa-solid_eye.png" alt="icone-ocultar-senha">
@@ -54,7 +52,7 @@
   
       <button class="button-create-account" type="button" (click)="cancel()"> Cancelar </button>
   
-      <button class="button-submit"  type="submit" (click)="createUser()"> Criar Conta </button>
+      <button class="button-submit"  type="submit" [disabled]="!formCreateUser.valid" (click)="createUser()"> Criar Conta </button>
   
   </mat-card-actions>
   

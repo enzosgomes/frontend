@@ -2,13 +2,16 @@
 
     <div class="topo-mat-card">
 
-        <label for="consultas">
+        <label for="consultas" class="label-table">
 
             Consulta Clínica
 
         </label>
 
-
+        <button class="button-create-consulta" type="button" (click)="addConsulta()">
+            <img class="img-croos-white" src="/assets/icon-cross-white.png" alt="cruz-branca">
+            Nova Consulta
+        </button>
     </div>
 
     <mat-card-content>
@@ -28,13 +31,13 @@
             <div class="conteiner-consultas" *ngFor="let consulta of consultas">
                 <tr>
 
-                    <td>{{consulta.medico.especialidade.nome}}</td>
+                    <td>ffffffffff</td>
 
-                    <td>{{consulta.medico.nome}}</td>
+                    <td>fffffffffff</td>
 
-                    <td>{{consulta.dia}}</td>
+                    <td>ffffffffffff</td>
 
-                    <td>{{consulta.horario}}</td>
+                    <td>ffffffffffff</td>
 
                     <td>
                         <img src="#" alt="icone">
@@ -42,6 +45,43 @@
                     </td>
                 </tr>
             </div>
+            <div >
+                <tr>
+
+                    <td>ffffffffff</td>
+
+                    <td>fffffffffff</td>
+
+                    <td>ffffffffffff</td>
+
+                    <td>ffffffffffff</td>
+
+                    <td>
+                        <img src="#" alt="icone">
+                        <button>Remover</button>
+                    </td>
+                </tr>
+            </div>
+                      
+            <div >
+                <tr>
+
+                    <td>ffffffffff</td>
+
+                    <td>fffffffffff</td>
+
+                    <td>ffffffffffff</td>
+
+                    <td>ffffffffffff</td>
+
+                    <td>
+                        <img src="#" alt="icone">
+                        <button>Remover</button>
+                    </td>
+                </tr>
+            </div>
+                      
+                      
                        
         </table>
 

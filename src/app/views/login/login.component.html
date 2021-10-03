@@ -13,7 +13,6 @@
     
   </mat-form-field>
 
-
     <mat-form-field class="form-password" appearance="outline" color="primary">
 
       <mat-label>Senha</mat-label>
@@ -31,7 +30,7 @@
 
   <mat-card-actions class="remember-password">
 
-    <mat-checkbox [(ngModel)]="checked" color="primary"> Lembra minha senha </mat-checkbox>
+    <mat-checkbox color="primary"> Lembra minha senha </mat-checkbox>
 
   </mat-card-actions>
 
@@ -39,7 +38,7 @@
 
     <button class="button-create-account" type="button" (click)="toCreateUser()"> Criar Conta </button>
 
-    <button class="button-submit"  type="submit" (click)="submit()"> Acessar </button>
+    <button class="button-submit"  type="submit" (click)="submitLogin()" [disabled]="!formLogin.valid"> Acessar </button>
 
 </mat-card-actions>
 
