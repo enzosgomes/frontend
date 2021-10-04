@@ -1,7 +1,10 @@
+
 import { User } from './../../shared/model/create-user.model';
 import { CreateUserService } from './../../shared/service/create-user.service';
+import { MyErrorStateMatcher, passwordValidator } from "./password.validator";
 
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -12,43 +15,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateUserComponent implements OnInit {
 
-  formCreateUser: FormGroup = new FormGroup({
-    username: new FormControl( '', [Validators.required] ),
-    email: new FormControl( '', [Validators.required, Validators.email] ),
-    password: new FormControl( '', [Validators.required] ),
-    validPassword: new FormControl( '', [Validators.required] )
-  });
+  formCreateUser: FormGroup;
 
   hide:boolean = true;
   
   hideValid:boolean = true;
 
-  validPassword: String;
-
   userResponse: User;
 
-  constructor(private router: Router, private createUserServise: CreateUserService) { }
+  errorMessageUser: string = "";
+
+  showPasswordconfirmedError: boolean = false;
+
+  matcher = new MyErrorStateMatcher();
+  
+  constructor( private router: Router, private createUserServise: CreateUserService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+
+    this.formCreateUser = this.fb.group({
+      username: [ null, [ Validators.required, Validators.minLength(4), Validators.maxLength(150) ] ],
+      email: [ null, [ Validators.required, Validators.email, Validators.maxLength(150) ] ],
+      password: [ null, [ Validators.required, Validators.minLength(8), Validators.maxLength(150) ] ],
+      validPassword: [ null, Validators.required ],
+    }, { validators: [passwordValidator] }
+    );
+
   }
 
-  createUser(): void 
+  createUser() 
   {
-    if(this.formCreateUser.value.validPassword == this.formCreateUser.value.password)
-    {
-      this.createUserServise.createUser(this.formCreateUser.value).subscribe(userResponse => {
+        this.createUserServise.createUser(this.formCreateUser.value).subscribe(userResponse => {
         this.userResponse = userResponse;
         this.router.navigate(['']);
-        }, error => {
-          console.log(error.error.non_field_errors);
-          alert('dados invalidos');
+        }, serverError => {
+          
+          this.errorMessageUser = serverError.error.non_field_errors;
+          //this.errosServer.openSnackBar(this.errorMessageUser);
         })
-    } else {
-      alert('Confirmação de senha invalida.');
-    }
   }
-  
-   cancel(): void 
+   cancel() 
    {
      this.router.navigate(['']);
    }

@@ -6,42 +6,81 @@
   
   <mat-card-content>
   
-  <form [formGroup]="formCreateUser">
+  <form [formGroup]="formCreateUser" (ngSubmit)="createUser()">
   
     <mat-form-field appearance="outline" color="primary">
         
       <mat-label>Nome</mat-label>
-      <input type="text" formControlName="username" matInput name="create-username">
-      
+      <input type="text" formControlName="username" matInput name="create-username" [errorStateMatcher]="matcher">
+
+      <mat-error *ngIf="formCreateUser.get('username')?.hasError('required')">
+        Nome obrigatório.
+      </mat-error>
+
+      <mat-error *ngIf="formCreateUser.get('username')?.hasError('minlength')">
+        O nome deve ter pelo menos 4 caracteres.
+      </mat-error>
+
+      <mat-error *ngIf="formCreateUser.get('username')?.hasError('maxlength')">
+        O nome pode ter até no máximo 150 caracteres.
+      </mat-error>
+
     </mat-form-field>
 
     <mat-form-field appearance="outline" color="primary">
         
         <mat-label>Email</mat-label>
-        <input type="email" matInput formControlName="email" name="create-email">
+        <input type="email" matInput formControlName="email" name="create-email" [errorStateMatcher]="matcher">
+        
+        <mat-error *ngIf="formCreateUser.get('email')?.hasError('required')">
+          Email obrigatório.
+        </mat-error>
+        <mat-error *ngIf="formCreateUser.get('email')?.hasError('email')">
+          Digite um email válido.
+        </mat-error>
         
       </mat-form-field>
     
       <mat-form-field appearance="outline" color="primary">
   
         <mat-label>Senha</mat-label>
-        <input [type]="hide ? 'password' : 'text'" matInput formControlName="password" name="create-password" autocomplete="off">
+        <input [type]="hide ? 'password' : 'text'" matInput formControlName="password" name="create-password" autocomplete="off" [errorStateMatcher]="matcher">
   
         <button type="button" class="button-icon" mat-icon-button matSuffix (click)="hide = !hide">
           <img  src="/assets/fa-solid_eye.png" alt="icone-ocultar-senha">
         </button>
+
+        <mat-error *ngIf="formCreateUser.get('password')?.hasError('required')">
+          Senha obrigatório.
+        </mat-error>
+  
+        <mat-error *ngIf="formCreateUser.get('password')?.hasError('minlength')">
+          A senha deve ter pelo menos 8 caracteres.
+        </mat-error>
+  
+        <mat-error *ngIf="formCreateUser.get('password')?.hasError('maxlength')">
+          A senha pode ter até no máximo 40 caracteres.
+        </mat-error>
   
       </mat-form-field>
 
       <mat-form-field appearance="outline" color="primary">
   
         <mat-label> Confirmar Senha</mat-label>
-        <input [type]="hideValid ? 'password' : 'text'" matInput matInput formControlName="validPassword" name="valid-password" autocomplete="off">
+        <input [type]="hideValid ? 'password' : 'text'" matInput matInput formControlName="validPassword" name="valid-password" autocomplete="off" [errorStateMatcher]="matcher">
   
         <button type="button" class="button-icon" mat-icon-button matSuffix (click)="hideValid = !hideValid">
           <img  src="/assets/fa-solid_eye.png" alt="icone-ocultar-senha">
         </button>
-  
+
+        <mat-error *ngIf="formCreateUser.get('validPassword')?.hasError('required')">
+          Confirme a senha
+        </mat-error>
+
+        <mat-error *ngIf="formCreateUser.hasError('paswordMismatch')">
+          As senhas são diferentes
+        </mat-error>
+
       </mat-form-field>
       
     </form>
@@ -52,7 +91,7 @@
   
       <button class="button-create-account" type="button" (click)="cancel()"> Cancelar </button>
   
-      <button class="button-submit"  type="submit" [disabled]="!formCreateUser.valid" (click)="createUser()"> Criar Conta </button>
+      <button class="button-submit"  type="submit" [disabled]="!formCreateUser.valid"> Criar Conta </button>
   
   </mat-card-actions>
   

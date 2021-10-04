@@ -51,6 +51,9 @@ mat-card-content {
   top: -5px;
   height: 5px;
 }
+.button-icon:hover {
+  background-color: #ffff;
+}
 
 /* checkbox remember password */
 mat-card-actions, .remember-password {
@@ -111,7 +114,7 @@ mat-card-actions, .buttons {
   color: #ffff;
 }
 
-.button-submit:hover {
+button:hover {
   background-color: #90D3D7;
   color: #ffff;
 }

@@ -38,7 +38,7 @@
 
     <button class="button-create-account" type="button" (click)="toCreateUser()"> Criar Conta </button>
 
-    <button class="button-submit"  type="submit" (click)="submitLogin()" [disabled]="!formLogin.valid"> Acessar </button>
+    <button class="button-submit"  type="submit" [disabled]="!formLogin.valid" (click)="submitLogin()"> Acessar </button>
 
 </mat-card-actions>
 

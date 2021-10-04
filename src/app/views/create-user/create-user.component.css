@@ -59,6 +59,10 @@
     top: -5px;
     height: 5px;
   }
+
+  .button-icon:hover {
+    background-color: #ffff;
+  }
   
   /* buttons */
   
@@ -96,7 +100,7 @@
     color: #ffff;
   }
   
-  .button-submit:hover {
+  button:hover {
     background-color: #90D3D7;
     color: #ffff;
   }

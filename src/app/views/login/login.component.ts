@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit {
   errorMessage: string = "";
 
   formLogin: FormGroup = new FormGroup({
-    username: new FormControl([null], [Validators.required]),
-    password: new FormControl([null], [Validators.required]),
+    username: new FormControl( [null], [Validators.required] ),
+    password: new FormControl( [null], [Validators.required] ),
   });
    
   constructor(private router: Router, private loginService: LoginService, private _snackBar: MatSnackBar) { }
