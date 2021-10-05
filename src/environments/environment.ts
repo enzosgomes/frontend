@@ -1,15 +1,17 @@
 export const environment = {
   production: false,
 
-  urlUser: "https://intmed-api-medicar.herokuapp.com/users/",
+  baseUrl: "https://k6k3qur6vk.api.quickmocker.com"
 
-  urlLogin: "https://intmed-api-medicar.herokuapp.com/users/login",
+  //urlUser: "https://intmed-api-medicar.herokuapp.com/users/",
 
-  urlEspecialidade: "https://intmed-api-medicar.herokuapp.com/especialidades/",
+  //urlLogin: "https://intmed-api-medicar.herokuapp.com/users/login",
 
-  urlMedicos: "https://intmed-api-medicar.herokuapp.com/medicos/",
+  //urlEspecialidade: "https://intmed-api-medicar.herokuapp.com/especialidades/",
 
-  urlAgendas: "https://intmed-api-medicar.herokuapp.com/agendas/",
+  //urlMedicos: "https://intmed-api-medicar.herokuapp.com/medicos/",
+
+  //urlAgendas: "https://intmed-api-medicar.herokuapp.com/agendas/",
   
-  urlConsulta: "https://intmed-api-medicar.herokuapp.com/consultas/"
+  //urlConsulta: "https://intmed-api-medicar.herokuapp.com/consultas/"
 };

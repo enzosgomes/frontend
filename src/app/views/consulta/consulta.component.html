@@ -16,75 +16,49 @@
 
     <mat-card-content>
 
+        <table mat-table [dataSource]="consultas" class="consultas-table">
 
-        <table id="consultas">
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+          
+            <!-- Position Column -->
+            <ng-container matColumnDef="especialidade">
+              <th mat-header-cell *matHeaderCellDef> ESPECIALIDADE </th>
+              <td mat-cell *matCellDef="let element"> {{element.medico.especialidade.nome}} </td>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="profissional">
+              <th mat-header-cell *matHeaderCellDef> PROFISSIONAL </th>
+              <td mat-cell *matCellDef="let element"> {{element.medico.nome}} </td>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="data">
+              <th mat-header-cell *matHeaderCellDef> DATA </th>
+              <td mat-cell *matCellDef="let element"> {{element.dia}} </td>
+            </ng-container>
+          
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="hora">
+              <th mat-header-cell *matHeaderCellDef> HORA </th>
+              <td mat-cell *matCellDef="let element"> {{element.horario}} </td>
+            </ng-container>
 
-            <div class="conteiner-th-table">
-                <tr>
-                    <th>ESPECIALIDADE</th>
-                    <th>PROFISSIONAL</th>
-                    <th>DATA</th>
-                    <th>HORA</th>
-                </tr>
-            </div>
-
-            <div class="conteiner-consultas" *ngFor="let consulta of consultas">
-                <tr>
-
-                    <td>ffffffffff</td>
-
-                    <td>fffffffffff</td>
-
-                    <td>ffffffffffff</td>
-
-                    <td>ffffffffffff</td>
-
-                    <td>
-                        <img src="#" alt="icone">
-                        <button>Remover</button>
-                    </td>
-                </tr>
-            </div>
-            <div >
-                <tr>
-
-                    <td>ffffffffff</td>
-
-                    <td>fffffffffff</td>
-
-                    <td>ffffffffffff</td>
-
-                    <td>ffffffffffff</td>
-
-                    <td>
-                        <img src="#" alt="icone">
-                        <button>Remover</button>
-                    </td>
-                </tr>
-            </div>
-                      
-            <div >
-                <tr>
-
-                    <td>ffffffffff</td>
-
-                    <td>fffffffffff</td>
-
-                    <td>ffffffffffff</td>
-
-                    <td>ffffffffffff</td>
-
-                    <td>
-                        <img src="#" alt="icone">
-                        <button>Remover</button>
-                    </td>
-                </tr>
-            </div>
-                      
-                      
-                       
-        </table>
-
+            <ng-container matColumnDef="delete-consulta">
+              <th mat-header-cell *matHeaderCellDef>  </th>
+              <td mat-cell *matCellDef="let element">
+                <button class="" type="button">
+                  <img class="img-croos-white" src="/assets/icon-cross-white.png" alt="cruz-branca">
+                  Desmarcar
+                </button>
+              </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          
     </mat-card-content>
 
 </mat-card>

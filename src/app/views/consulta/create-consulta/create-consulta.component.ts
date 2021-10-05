@@ -35,6 +35,10 @@ export class CreateConsultaComponent implements OnInit {
     horario: ''
   }
 
+  showErrorMedico: boolean = false;
+  showErrorDia: boolean = false;
+  showErrorHora: boolean = false;
+
   constructor( private createConsultaService: CreateConsultaService, private fb: FormBuilder, private dialogRef: MatDialogRef<CreateConsultaComponent> ) { }
 
   ngOnInit(): void {
@@ -44,17 +48,18 @@ export class CreateConsultaComponent implements OnInit {
       agenda: [null, Validators.required],
       hora: [null, Validators.required]
     });
+
+    this.getEspecialidades();
   }
 
   getEspecialidades() {
     this.createConsultaService.getEspecialidades().subscribe(data => {
       this.especialidades = data.results;
     })
-    this.idEspecialidade = this.formGroupCreateConsulta.value.especialidade;
   }
 
   getMedicos() {
-
+    this.idEspecialidade = this.formGroupCreateConsulta.value.especialidade;
     if (this.idEspecialidade != null) {
       this.createConsultaService.getMedicos(this.idEspecialidade).subscribe(data => {
         this.medicos = data.results;
@@ -62,7 +67,7 @@ export class CreateConsultaComponent implements OnInit {
       this.idMedico = this.formGroupCreateConsulta.value.medico;
     } else {
 
-      alert("selecione primeiro a especialidade");
+      this.showErrorMedico = true;
 
     }
 
@@ -75,22 +80,13 @@ export class CreateConsultaComponent implements OnInit {
       this.createConsultaService.getAgendas(this.idMedico, this.idEspecialidade).subscribe(data => {
         this.agendas = data.results;
       })
-
       this.diaConsulta = this.formGroupCreateConsulta.value.agenda;
 
     } else {
-
-      if (this.idEspecialidade == null) {
-        alert("selecione primeiro a especialidade");
-      }
-      if (this.idMedico == null) {
-        alert("selecione primeiro o medico");
-      }
-
+      this.showErrorDia = true;
     }
 
   }
-
 
   getHora() {
 
@@ -102,22 +98,12 @@ export class CreateConsultaComponent implements OnInit {
         this.agendaConsulta = JSON.parse(this.agendaConsulta);
         this.horarios = this.agendaConsulta.horarios;
         this.requiredPostCreateConsulta.agenda_id = this.agendaConsulta.id
-      })
 
+      })
       this.requiredPostCreateConsulta.horario = this.formGroupCreateConsulta.value.hora;
 
     } else {
-
-      if (this.idEspecialidade == null) {
-        alert("selecione primeiro a especialidade");
-      }
-      if (this.idMedico == null) {
-        alert("selecione primeiro o medico");
-      }
-      if (this.diaConsulta == null) {
-        alert("selecione primeiro o dia");
-      }
-
+      this.showErrorHora = true;
     }
   }
 
@@ -131,7 +117,7 @@ export class CreateConsultaComponent implements OnInit {
     console.log(this.requiredPostCreateConsulta);
   }
 
-  cancelar(): void {
+  cancel(): void {
     this.dialogRef.close();
   }
 

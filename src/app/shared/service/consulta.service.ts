@@ -7,13 +7,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ConsultaService {
-  private readonly urlConsulta = environment["urlConsulta"];
+ // private readonly urlConsulta = environment["urlConsulta"];
 
   constructor( private http: HttpClient ) { }
 
 
   getConsulta(): Observable<any> {
-    return this.http.get<any>( this.urlConsulta );
+    return this.http.get<any>( environment["baseUrl"] + "/consultas/" );
   }
   
 }

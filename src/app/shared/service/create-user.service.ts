@@ -9,12 +9,12 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class CreateUserService {
-  private readonly urlUser = environment["urlUser"];
+  //private readonly urlUser = environment["urlUser"];
   constructor(private http: HttpClient) { }
 
   createUser(user: User): Observable<User>
   {
-    return this.http.post<User>(this.urlUser, user)
+    return this.http.post<User>( environment["baseUrl"] + "/users/", user)
   }
 
 }

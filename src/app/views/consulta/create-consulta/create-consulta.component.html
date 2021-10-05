@@ -3,7 +3,7 @@
 
     <form [formGroup]="formGroupCreateConsulta" (ngSubmit)="marcarConsulta()">
 
-        <select formControlName="especialidade" (click)="getEspecialidades()">
+        <select formControlName="especialidade">
             <option [ngValue]="null" disabled>Especialidade</option>
 
             <option *ngFor="let especialidade of especialidades" [ngValue]="especialidade.id">
@@ -20,7 +20,11 @@
                 {{medico.nome}}
             </option>
         </select>
-        
+
+        <div class="error" *ngIf="showErrorMedico">
+            Selecione primeiro a especialidade
+        </div>
+
         <select formControlName="agenda" (click)="getAgendas()">
             <option [ngValue]="null" disabled>Data</option>
 
@@ -30,6 +34,10 @@
 
         </select>
 
+        <div class="error" *ngIf="showErrorDia">
+            Selecione primeiro o medico
+        </div>
+
         <select formControlName="hora" (click)="getHora()">
             <option [ngValue]="null" disabled>Hora</option>
 
@@ -38,9 +46,13 @@
             </option>
         </select>
 
+        <div class="error" *ngIf="showErrorHora">
+            Selecione primeiro a data
+        </div>
+
         <div mat-dialog-actions > 
 
-            <button class="button-cancelar" type="button" (click)="cancelar()">Cancelar</button>
+            <button class="button-cancel" type="button" (click)="cancel()">Cancelar</button>
 
             <button class="button-submit" type="submit" [disabled]="!formGroupCreateConsulta.valid">Comfirmar</button>
         </div>

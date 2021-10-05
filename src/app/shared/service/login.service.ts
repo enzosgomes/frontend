@@ -8,14 +8,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  private readonly urlLogin = environment["urlLogin"];
   token: any;
 
   constructor(private http: HttpClient) { }
 
   login(login: User): Observable<Token>
   {
-    return this.token = this.http.post<Token>(this.urlLogin, login);
+    return this.token = this.http.post<Token>( environment["baseUrl"] + "/users/login", login);
   }
 
 }

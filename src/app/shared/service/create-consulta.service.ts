@@ -10,35 +10,35 @@ import { Injectable } from '@angular/core';
 })
 export class CreateConsultaService {
 
-  private readonly urlEspecialidades = environment["urlEspecialidade"];
-  private readonly urlMedicos = environment["urlMedicos"];
-  private readonly urlAgendas = environment["urlAgendas"];
-  private readonly urlConsulta = environment["urlConsulta"];
+  //private readonly urlEspecialidades = environment["urlEspecialidade"];
+  //private readonly urlMedicos = environment["urlMedicos"];
+  //private readonly urlAgendas = environment["urlAgendas"];
+  //private readonly urlConsulta = environment["urlConsulta"];
 
   constructor(private http: HttpClient) { }
 
   getEspecialidades(): Observable<ResponseEspecialidades> 
   {
-    return this.http.get<ResponseEspecialidades>(this.urlEspecialidades);
+    return this.http.get<ResponseEspecialidades>( environment["baseUrl"] + "/especialidades/" );
   }
 
   getMedicos(especialidade: Number): Observable<ResponseEspecialidades> 
   {
-    return this.http.get<ResponseEspecialidades>(this.urlMedicos + '?especialidade=' + especialidade);
+    return this.http.get<ResponseEspecialidades>( environment["baseUrl"] + "/medicos/" + '?especialidade=' + especialidade);
   }
 
   getAgendas(medico: Number, especialidade: Number): Observable<any> 
   {
-    return this.http.get<ResponseEspecialidades>(this.urlAgendas + '?medico=' + medico + '&especialidade=' + especialidade);
+    return this.http.get<ResponseEspecialidades>(  environment["baseUrl"] + "/agendas/" + '?medico=' + medico + '&especialidade=' + especialidade);
   }
 
   getAgenda(medico: Number, especialidade: Number, data: String): Observable<any>
   {
-    return this.http.get<ResponseEspecialidades>(this.urlAgendas + '?medico=' + medico + '&especialidade=' + especialidade + '&data_inicio=' + data + '&data_final=' + data);
+    return this.http.get<ResponseEspecialidades>( environment["baseUrl"] + '/agendas/'  + medico + '&especialidade=' + especialidade + '&data_inicio=' + data + '&data_final=' + data);
   }
 
   postCreateConsulta(consulta: any): Observable<any>{
-    return this.http.post(this.urlConsulta, consulta);
+    return this.http.post( environment["baseUrl"], consulta);
   }
 
 }

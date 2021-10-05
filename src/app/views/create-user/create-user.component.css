@@ -71,7 +71,7 @@
     justify-content: center;
   }
   
-  .button-create-account, .button-submit  {
+  .button-cancel, .button-submit  {
     cursor: pointer;
     width: 180px;
     height: 40px;
@@ -85,12 +85,12 @@
     border-radius: 8px;
   }
   
-  .button-create-account {
+  .button-cancel {
     background-color: #ffff;
     color: #49B4BB;
   }
   
-  .button-create-account:hover {
+  .button-cancel:hover {
     background-color: #D9F1F3;
     
   }

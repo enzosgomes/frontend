@@ -21,7 +21,7 @@ option {
 }
 
 /* buttons */
-.button-cancelar, .button-submit  {
+.button-cancel, .button-submit  {
   cursor: pointer;
   width: 180px;
   height: 40px;
@@ -35,12 +35,12 @@ option {
   border-radius: 8px;
 }
 
-.button-cancelar {
+.button-cancel {
   background-color: #ffff;
   color: #49B4BB;
 }
 
-.button-cancelar:hover {
+.button-cancel:hover {
   background-color: #D9F1F3;
 }
 
@@ -56,4 +56,10 @@ button:hover {
 
 button:disabled {
   background-color: #D9F1F3;
+}
+
+.error {
+  padding-top: 20px;
+  margin-bottom: -20px;
+  color: #49B4BB;
 }
