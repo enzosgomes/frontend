@@ -1,7 +1,7 @@
 <div>
     <label mat-dialog-title>Nova Consulta</label>
 
-    <form [formGroup]="formGroupCreateConsulta" (ngSubmit)="marcarConsulta()">
+    <form [formGroup]="formGroupCreateConsulta">
 
         <select formControlName="especialidade">
             <option [ngValue]="null" disabled>Especialidade</option>
@@ -29,7 +29,7 @@
             <option [ngValue]="null" disabled>Data</option>
 
             <option *ngFor="let agenda of agendas" [ngValue]="agenda.dia">
-              {{agenda.dia}}
+              {{agenda.dia | date}}
           </option>
 
         </select>
@@ -54,7 +54,7 @@
 
             <button class="button-cancel" type="button" (click)="cancel()">Cancelar</button>
 
-            <button class="button-submit" type="submit" [disabled]="!formGroupCreateConsulta.valid">Confirmar</button>
+            <button class="button-submit" type="submit" [disabled]="!formGroupCreateConsulta.valid" (click)="marcarConsulta()">Confirmar</button>
         </div>
         
     </form>

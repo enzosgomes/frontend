@@ -1,5 +1,6 @@
-import { CreateConsultaService } from './../../../shared/service/create-consulta.service';
-import { Especialidade } from './../../../shared/model/especialidade.model';
+import { CreateConsultaService } from 'src/app/shared/service/create-consulta.service';
+import { Especialidade } from 'src/app/shared/model/especialidade.model';
+import { MessageSnackbarService } from 'src/app/shared/service/message-snackbar.service';
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -39,7 +40,9 @@ export class CreateConsultaComponent implements OnInit {
   showErrorDia: boolean = false;
   showErrorHora: boolean = false;
 
-  constructor( private createConsultaService: CreateConsultaService, private fb: FormBuilder, private dialogRef: MatDialogRef<CreateConsultaComponent> ) { }
+  errorMessage:string;
+
+  constructor( private createConsultaService: CreateConsultaService, private fb: FormBuilder, private dialogRef: MatDialogRef<CreateConsultaComponent>,  private messageSnackbarService: MessageSnackbarService ) { }
 
   ngOnInit(): void {
     this.formGroupCreateConsulta = this.fb.group({
@@ -59,6 +62,9 @@ export class CreateConsultaComponent implements OnInit {
   }
 
   getMedicos() {
+    this.showErrorMedico = false;
+    this.showErrorDia = false;
+
     this.idEspecialidade = this.formGroupCreateConsulta.value.especialidade;
     if (this.idEspecialidade != null) {
       this.createConsultaService.getMedicos(this.idEspecialidade).subscribe(data => {
@@ -74,6 +80,7 @@ export class CreateConsultaComponent implements OnInit {
   }
 
   getAgendas() {
+    this.showErrorHora = false;
 
     if (this.idMedico != null && this.idEspecialidade != null) {
 
@@ -108,13 +115,15 @@ export class CreateConsultaComponent implements OnInit {
   }
 
   marcarConsulta() {
-    this.createConsultaService.postCreateConsulta(this.requiredPostCreateConsulta).subscribe(resposta => {
-      console.log(resposta);
+    this.createConsultaService.postCreateConsulta(this.requiredPostCreateConsulta).subscribe( () => {
+      this.messageSnackbarService.showSuccess("Consulta marcada.");
       this.dialogRef.close();
+      this.formGroupCreateConsulta.reset();
+      window.location.reload();
     }, error => {
-      console.log(error.error.non_field_errors)
+      this.errorMessage = error.error.non_field_errors;
+      this.messageSnackbarService.showError(this.errorMessage);
     })
-    console.log(this.requiredPostCreateConsulta);
   }
 
   cancel(): void {

@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { DatePipe } from './shared/pipe/date.pipe';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './views/login/login.component';
@@ -24,6 +25,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -33,7 +35,8 @@ import { MatTableModule } from '@angular/material/table';
     CreateUserComponent,
     HomeComponent,
     ConsultaComponent,
-    CreateConsultaComponent
+    CreateConsultaComponent,
+    DatePipe
   ],
   imports: [
     BrowserModule,
@@ -51,9 +54,10 @@ import { MatTableModule } from '@angular/material/table';
     MatDialogModule,
     MatToolbarModule,
     MatSnackBarModule,
-    MatTableModule
+    MatTableModule,
+    MatProgressSpinnerModule
   ],
-  providers: [LoginComponent,
+  providers: [LoginComponent, DatePipe,
     { 
       provide: HTTP_INTERCEPTORS,
       useClass: AltoTokenInterceptor,

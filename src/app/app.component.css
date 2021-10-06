@@ -1,0 +1,7 @@
+::ng-deep snack-bar-container.show-error{
+    background-color: rgb(201, 36, 36);
+ }
+
+::ng-deep snack-bar-container.show-succes {
+    background-color: #49B4BB;
+ }

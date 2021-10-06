@@ -1,9 +1,11 @@
-import { LoginService } from './../../shared/service/login.service';
-import { Token } from './../../shared/model/create-user.model';
+import { LoginService } from 'src/app//shared/service/login.service';
+import { Token } from 'src/app/shared/model/create-user.model';
+import { MessageSnackbarService } from 'src/app/shared/service/message-snackbar.service';
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+
 
 
 @Component({
@@ -14,20 +16,22 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   isAuthenticate: boolean = false;
+  showSpiner: boolean = false;
+
   tokenAuthorization: any;
   hide: boolean = true;
   errorMessage: string = "";
 
   formLogin: FormGroup;
 
-  constructor(private router: Router, private loginService: LoginService,  private fb: FormBuilder) { }
+  constructor(private router: Router, private loginService: LoginService,  private fb: FormBuilder, private messageSnackbarService: MessageSnackbarService) { }
 
   ngOnInit(): void {
 
     this.formLogin = this.fb.group({
-      username: [ null, [ Validators.required, Validators.minLength(4), Validators.maxLength(150) ] ],
-      password: [ null, [ Validators.required, Validators.minLength(8), Validators.maxLength(150) ] ],
-      // valta validação tipos de caracteres permitidos mas não consigo acessar heroku para ver
+      username: [null, [ Validators.required, Validators.minLength(4), Validators.maxLength(150) ]],
+      password: [null, [ Validators.required, Validators.minLength(8), Validators.maxLength(150) ]]
+      // falta validação tipos de caracteres permitidos no password mas não consigo acessar heroku para ver
     }
     );
 
@@ -47,12 +51,12 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('User', this.formLogin.value.username);
         this.getTokenAuthorization();
         this.router.navigate(['login/home']);
-        //add snackbar de sucesso
       }
     }, error => {
       this.errorMessage = error.error.non_field_errors;
-      //add snackbar de error
+      this.messageSnackbarService.showError(this.errorMessage);
     })
+    this.showSpiner= true;
   }
 
   getTokenAuthorization()

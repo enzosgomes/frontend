@@ -1,10 +1,9 @@
-import { ConsultaService } from './../../shared/service/consulta.service';
-
+import { ConsultaService } from 'src/app/shared/service/consulta.service';
 import { CreateConsultaComponent } from './create-consulta/create-consulta.component';
+import { MessageSnackbarService } from 'src/app/shared/service/message-snackbar.service';
 
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
-
 
 
 @Component({
@@ -16,9 +15,11 @@ export class ConsultaComponent implements OnInit {
 
   consultas: any[];
 
+  errorMessage: string;
+
   displayedColumns: string[] = ['especialidade', 'profissional', 'data', 'hora', 'delete-consulta'];
   
-  constructor( private consultaService: ConsultaService, private dialog: MatDialog) { }
+  constructor( private consultaService: ConsultaService, private dialog: MatDialog, private messageSnackbarService: MessageSnackbarService) { }
 
   ngOnInit(): void {
     
@@ -36,15 +37,16 @@ export class ConsultaComponent implements OnInit {
   listConsultas() {
     this.consultaService.getConsulta().subscribe( consultas => {
       this.consultas = consultas.results;
-      //tratas as respontas de erros 
     })
   }
 
   deleteConsulta(id: any) {
-    this.consultaService.deleteConsulta(id).subscribe( response => {
-      //tratas as respontas de erros 
+    this.consultaService.deleteConsulta(id).subscribe( () => {
+      this.messageSnackbarService.showSuccess("Consulta deletada!");
+    }, error => {
+      this.errorMessage = error.error.non_field_errors;
+      this.messageSnackbarService.showError(this.errorMessage);
     })
   }
-
 
 }

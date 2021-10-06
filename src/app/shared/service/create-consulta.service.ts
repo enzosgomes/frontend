@@ -38,7 +38,7 @@ export class CreateConsultaService {
   }
 
   postCreateConsulta(consulta: any): Observable<any>{
-    return this.http.post( environment["baseUrl"], consulta);
+    return this.http.post( environment["baseUrl"] + '/consultas/', consulta);
   }
 
 }

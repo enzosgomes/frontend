@@ -1,4 +1,6 @@
-<mat-card>
+<mat-spinner *ngIf="showSpiner"></mat-spinner>
+
+<mat-card *ngIf="!showSpiner">
 
   <img mat-card-image class="logo-img" src="/assets/Logo.png" alt="logo-medicar">
 
