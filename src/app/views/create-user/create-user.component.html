@@ -11,7 +11,7 @@
     <mat-form-field appearance="outline" color="primary">
         
       <mat-label>Nome</mat-label>
-      <input type="text" formControlName="username" matInput name="create-username" [errorStateMatcher]="matcher">
+      <input type="text" formControlName="username" matInput name="create-username">
 
       <mat-error *ngIf="formCreateUser.get('username')?.hasError('required')">
         Nome obrigatório.
@@ -30,7 +30,7 @@
     <mat-form-field appearance="outline" color="primary">
         
         <mat-label>Email</mat-label>
-        <input type="email" matInput formControlName="email" name="create-email" [errorStateMatcher]="matcher">
+        <input type="email" matInput formControlName="email" name="create-email">
         
         <mat-error *ngIf="formCreateUser.get('email')?.hasError('required')">
           Email obrigatório.

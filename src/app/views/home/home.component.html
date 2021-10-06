@@ -1,8 +1,11 @@
-<div>
-    <div>Nome user</div>
-    <button name="desconect" (click)="logout()">Desconectar</button> 
+<div class="header-home">
+    <img mat-card-image class="logo-img" src="/assets/Logo.png" alt="logo-medicar">
+
+        <div *ngIf="isAuthenticateHome" class="identifies"> {{ user }} </div>
+        <div *ngIf="!isAuthenticateHome" class="identifies"> faça login novamente </div>
+        <button type="button" class="button-logout" (click)="logout()">Desconectar</button>
 </div>
 
-<div>
+<div *ngIf="isAuthenticateHome">
     <app-consulta></app-consulta>
 </div>

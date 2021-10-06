@@ -15,5 +15,10 @@ export class ConsultaService {
   getConsulta(): Observable<any> {
     return this.http.get<any>( environment["baseUrl"] + "/consultas/" );
   }
+
+  deleteConsulta(id: any): Observable<any> {
+    return this.http.delete<any>( environment["baseUrl"] + "/consultas/", id);
+  }
+
   
 }

@@ -10,6 +10,18 @@
 
     <mat-label>Email ou Login</mat-label>
     <input formControlName="username" type="text" matInput name="username">
+
+    <mat-error *ngIf="formLogin.get('username')?.hasError('required')">
+      Campo obrigatório.
+    </mat-error>
+
+    <mat-error *ngIf="formLogin.get('username')?.hasError('minlength')">
+      O Campo deve ter pelo menos 4 caracteres.
+    </mat-error>
+
+    <mat-error *ngIf="formLogin.get('username')?.hasError('maxlength')">
+      O Campo pode ter até no máximo 150 caracteres.
+    </mat-error>
     
   </mat-form-field>
 
@@ -21,6 +33,18 @@
       <button type="button" class="button-icon" mat-icon-button matSuffix (click)="hide = !hide">
         <img  src="/assets/fa-solid_eye.png" alt="icone-ocultar-senha">
       </button>
+
+      <mat-error *ngIf="formLogin.get('password')?.hasError('required')">
+        Senha obrigatório.
+      </mat-error>
+
+      <mat-error *ngIf="formLogin.get('password')?.hasError('minlength')">
+        A senha deve ter pelo menos 8 caracteres.
+      </mat-error>
+
+      <mat-error *ngIf="formLogin.get('password')?.hasError('maxlength')">
+        A senha pode ter até no máximo 40 caracteres.
+      </mat-error>
 
     </mat-form-field>
     

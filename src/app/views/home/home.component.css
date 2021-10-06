@@ -1,0 +1,30 @@
+.header-home {
+    display: flex;
+    justify-content: center;
+    padding-top: 18px;
+}
+
+  
+.logo-img {
+    width: 90.37px;
+    height: 25px;
+    padding-top: 20px;
+    margin-right: 300px;
+  }
+
+  .identifies {
+    width: 85px;
+    height: 13px;
+    color: #A8A8A8;
+  }
+
+  .button-logout {
+    cursor: pointer;
+    display: inline-block;
+    width: 138px;
+    height: 24px;
+    border: none;
+    border-radius: 4px;
+    background-color: #ffff;
+    color: #49B4BB;
+}
